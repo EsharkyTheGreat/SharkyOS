@@ -129,3 +129,25 @@ Selectors point to data structure that describe memory ranges and the permission
 ### Paging Memory Scheme
 Memory is virtual and what you adddress can point to somewhere entirely different memory
 paging is the most popular choice in kernel/OS
+
+
+### Entering Protected Mode
+We disable interrupts, load the global descriptor table and perform a jump to 32 bit code
+
+GDT - Contains enteries telling the CPU about memory Segments
+Loaded using LGDT assembly instruction - expects GDT description structure ( size, offset )
+
+We create 3 gdt enteries
+1st is NULL which should be like that
+2nd is for code segments we set its range to be from 0 to 0xffff
+3rd is for data segment we set the range to be same
+
+then we create the struct of the gdt_descriptor ->
+which is 
+  size - 1
+  address of start
+
+we load this address using the lgdt instruction 
+change cr0 register to go into protected mode and jump according to the new code segment offset to our 32 bit code
+we change the cr0 register to enable the protect bit
+Here according to out new data segment we set out data segment registers and also our stack 
