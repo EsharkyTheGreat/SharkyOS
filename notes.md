@@ -151,3 +151,6 @@ we load this address using the lgdt instruction
 change cr0 register to go into protected mode and jump according to the new code segment offset to our 32 bit code
 we change the cr0 register to enable the protect bit
 Here according to out new data segment we set out data segment registers and also our stack 
+
+### Enabling A20 Line
+It is important to do this otherwise we won't be able to access the 21st bit number of any memory access.
