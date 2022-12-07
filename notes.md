@@ -154,3 +154,10 @@ Here according to out new data segment we set out data segment registers and als
 
 ### Enabling A20 Line
 It is important to do this otherwise we won't be able to access the 21st bit number of any memory access.
+
+### Cross-Compiler
+Followed the instructions on os.dev.wiki to build a GCC-Cross-Compiler which we'll use to build the kernel, this gcc doesnt have the standard functions built into it and we'll have to create them ourselves
+
+### Linker Script
+We create a linker script `linker.ld` this is used for the linking process here we specify we want to load our kernel at address 1M or 0x100000
+
