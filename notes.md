@@ -161,3 +161,11 @@ Followed the instructions on os.dev.wiki to build a GCC-Cross-Compiler which we'
 ### Linker Script
 We create a linker script `linker.ld` this is used for the linking process here we specify we want to load our kernel at address 1M or 0x100000
 
+### Alignment Issue
+Since our kernel.asm code is first in the binary and C functions require stack to be aligned we align our kernel asm to 512 bytes 
+
+### Text Mode
+It allows you to write ASCII directly to video memory instead of setting pixels for coloured displays start at address 0xb8000 it supports 16 different colours for monovhrom displays 0xB0000 ascii -> pixel conversion is done automatically
+
+References a font table for conversion -> Each Character 2 bytes, byte 0 -> ASCII and byte 1 -> Colour Code
+
