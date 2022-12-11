@@ -183,3 +183,19 @@ __attribute__((packed)) aligns struct
 ### Registering our Interrupt
 We create the array of interrupts set an interrupt in it to out function create a descriptor of it like we did before with address and size, then load it with `lidt` instruction again
 we registered int 0 which can be called by division by zero error by the processor or by the assembly instruction int 0
+
+### Programmable Interrupt Controller
+- Allows Hardware to Interrupt the processor state
+- Programmable
+- Requires interrupt acknowledgment
+
+Hardware interrupts the processor (harddisk,keyboard)
+Standard ISA IRQs table (mouse,keyboard, timer interrupt, disk etc)
+irq = baseinterrupt + num
+by default it is 8-15 but these are reserved in protected mode for exceptions so we are required to remap the PIC(Programmable Interrupt Controller)
+System has two PIC one for master ports and other for slave ports
+master -0 to 7
+slave - 8 to 15
+PIC control ports
+0x20 and 0x21 are master IRQs
+0xA0 and 0xA1 are slave IRQs

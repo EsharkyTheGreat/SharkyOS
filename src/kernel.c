@@ -10,6 +10,7 @@ uint16_t terminal_row = 0;
 uint16_t terminal_col = 0;
 
 //extern void problem();
+extern void enable_interrupts();
 
 uint16_t terminal_make_char(char c, char colour)
 {
@@ -70,5 +71,7 @@ void kernel_main()
   // Initialize the interrupt descriptor table
   idt_init();
   //problem();
-  outb(0x60,0xff);
+  //outb(0x60,0xff);
+  enable_interrupts();
+
 }
