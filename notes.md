@@ -169,3 +169,17 @@ It allows you to write ASCII directly to video memory instead of setting pixels 
 
 References a font table for conversion -> Each Character 2 bytes, byte 0 -> ASCII and byte 1 -> Colour Code
 
+### Print Hello World
+We Use the text mode to set all characters to space and create a functiont that iterates over the rows and columns of the screen and prints out our desired character
+
+### Interrupt Descriptor Table
+- Describes how interrupts are invoked in protected mode
+- Can be mapped anywhere in memory
+- Different from the interrupt vector table
+- Code pointers to different `int` like `int 80`
+
+__attribute__((packed)) aligns struct
+
+### Registering our Interrupt
+We create the array of interrupts set an interrupt in it to out function create a descriptor of it like we did before with address and size, then load it with `lidt` instruction again
+we registered int 0 which can be called by division by zero error by the processor or by the assembly instruction int 0

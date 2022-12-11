@@ -1,10 +1,15 @@
 #include "kernel.h"
+#include "idt/idt.h"
+#include "io/io.h"
+
 #include <stdint.h>
 #include <stddef.h>
 
 uint16_t *vd_mem = 0;
 uint16_t terminal_row = 0;
 uint16_t terminal_col = 0;
+
+//extern void problem();
 
 uint16_t terminal_make_char(char c, char colour)
 {
@@ -60,5 +65,10 @@ void print(const char *str)
 void kernel_main()
 {
   terminal_initialize();
-  print("Hello World!\nWelcome to Sharky OS");
+  print("Hello World!\nWelcome to Sharky OS\n");
+
+  // Initialize the interrupt descriptor table
+  idt_init();
+  //problem();
+  outb(0x60,0xff);
 }
