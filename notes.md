@@ -199,3 +199,12 @@ slave - 8 to 15
 PIC control ports
 0x20 and 0x21 are master IRQs
 0xA0 and 0xA1 are slave IRQs
+
+### Heap
+Giant memory region which can be shared in a controllable manner
+can ask and tell the heap for need of memory and when ur done
+heap implementations are essetial system memory managers
+
+- Video memory takes up portions of RAM
+- Hardware memory takes up portion of RAM
+- Unused part for us

@@ -1,6 +1,7 @@
 #include "kernel.h"
 #include "idt/idt.h"
 #include "io/io.h"
+#include "memory/heap/kheap.h"
 
 #include <stdint.h>
 #include <stddef.h>
@@ -67,6 +68,7 @@ void kernel_main()
 {
   terminal_initialize();
   print("Hello World!\nWelcome to Sharky OS\n");
+  kheap_init();
 
   // Initialize the interrupt descriptor table
   idt_init();
@@ -74,4 +76,12 @@ void kernel_main()
   //outb(0x60,0xff);
   enable_interrupts();
 
+  void* ptr = kmalloc(50);
+  void *ptr2 = kmalloc(5000);
+  void *ptr3 = kmalloc(5600);
+  kfree(ptr);
+  void *ptr4 = kmalloc(50);
+  if (ptr || ptr2 || ptr3 || ptr4) {
+
+  }
 }
