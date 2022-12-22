@@ -208,3 +208,22 @@ heap implementations are essetial system memory managers
 - Video memory takes up portions of RAM
 - Hardware memory takes up portion of RAM
 - Unused part for us
+## What is Paging ?
+- Paging allows us to remamp memory addresses to point to other memory addresses
+- Can be used to provide the illusion we have the maximum amount of RAM installed
+- Can be used to hide memory from other processes
+### Remapping Memory
+- Paging allows us to remap one memory address to another, so 0x100000 could point to 0x200000
+- Paging works in 4096 byte blocks by default. These blocks are called pages.
+- When pagin is enabled the MMU (Memory Management Unit) will look at your allocated page table to resolve virtual addresses into physical addresses.
+- Paging allows us to pretend memory exists when it does not.
+### Virtual Addresses vs Physical Addresses
+- Virtual addresses that are not pointing to the address in memory that their value says they are.
+- Physical addresses are absolute addresses in memory whose value points to the same address in memory.
+### SharkyOS Paging Structure
+- 1024 page directories which point to 1024 page tables
+- 1024 page table entries per page tables
+- Each Page table entry covers 4096 bytes of memory
+- Each "4096" bytes of memory is called a page
+- 1024 * 1024 * 4096 = 4,294,967,296 Bytes / 4GB of addressable memory
+- 32 bit architecture
