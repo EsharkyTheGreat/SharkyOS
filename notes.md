@@ -227,3 +227,39 @@ heap implementations are essetial system memory managers
 - Each "4096" bytes of memory is called a page
 - 1024 * 1024 * 4096 = 4,294,967,296 Bytes / 4GB of addressable memory
 - 32 bit architecture
+
+### What is a PCI IDE Controller ?
+IDE refers to the electrical specifiaction of cables which connect ATA drives to another device
+IDE allows up to 4 drives to be connected
+
+- ATA   (serial)
+- ATA   (parallel)
+- ATAPI (Serial)
+- ATAPI (Parallel)
+
+Don't understand this yet
+
+### File System
+- A file system is a structure that describes how information is layed out in the disk
+- Disks are not aware of files
+- The operating system knows the filesystem structures so knows how to read files from the disk
+
+### Disks
+- Hard disks can be thought of as just a gian array of information split into sectors (usually 512 bytes)
+- Each sector can be read into memory and is given a LBA(Logical Block Address) number
+- Files do not exists on the disk
+- Disks have no concepts of files
+
+### Filesystem Structure
+- Containes raw data for files
+- Contains the filesystem structure header which can explain things such as how many files are on the disk, where the root directory is located and so on..
+- The way files are laid out on disk is different depending on the filesystem you are using e.g "FAT16", FAT32, NTFS and many more
+- Without file system we would be forced to read and write data through the use of sector numbers, structure would not exsist and corruption would likely occur
+
+### FAT16 (File Allocation Table) 16 Bits
+- The first sector in the filesystem format is the bootsector on the disk. Fields also exist in this first sector that describe the filesystem such as how many reserved sectros follow this sector
+- Then follows the reserved sectors thesea re sectors ignored by the filesystem. There is a field  in the boot sector that specifies how many reserved sectors that are. (Operating System has to take care of this)
+- Now we have our first file allocation table, this table contains values that represent which clusters on the disk are taken and whicha re free.(A cluster is just a certain number of sectors joined together to represent one cluster)
+- Next comes our second file allocation table it's optional though and depends on the FAT16 header in the boot sector
+- Now comes our root directory this explains what files/directories are in the root directory of the filesystem. Each entry has a relative name that represents the file or directory name, attributes such as read only, the address of the first cluster representing the data on the disk. And more..
+- Finally we have our data region, all the data is here
