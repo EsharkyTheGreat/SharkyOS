@@ -7,6 +7,7 @@
 #include "disk/streamer.h"
 #include "fs/pparser.h"
 #include "string/string.h"
+#include "fs/file.h"
 
 #include <stdint.h>
 #include <stddef.h>
@@ -81,10 +82,11 @@ void kernel_main()
   // Enable the system Interrupts
   enable_interrupts();
 
-  struct disk_stream *stream = diskstreamer_new(0);
-  diskstreamer_seek(stream, 0x201);
-  unsigned char c = 0;
-  diskstreamer_read(stream, &c, 1);
-  while(1) {}
+  // struct disk_stream *stream = diskstreamer_new(0);
+  // diskstreamer_seek(stream, 0x201);
+  // unsigned char c = 0;
+  // diskstreamer_read(stream, &c, 1);
+  // while(1) {}
+  fs_init();
 
 }

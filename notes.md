@@ -263,3 +263,22 @@ Don't understand this yet
 - Next comes our second file allocation table it's optional though and depends on the FAT16 header in the boot sector
 - Now comes our root directory this explains what files/directories are in the root directory of the filesystem. Each entry has a relative name that represents the file or directory name, attributes such as read only, the address of the first cluster representing the data on the disk. And more..
 - Finally we have our data region, all the data is here
+
+### File Allocation Table
+- The file allocation table is a system developed by microsoft
+- it consists of a series of clusters that hold data and a table that determines the state of a cluster
+- the boot sector stores information about the filesystem
+
+### FAT 16 File System
+- Uses clusters to represent data and subdirectories
+- Each Cluster uses a fixed amount of sectors which is specified in the boot sector
+- Every file in FAT16 needs to use atlease one cluster for its data this means a lot of sotrage is wasterd for small files
+- FAT16 cannot store files larger than 2GB without large file support. With large file support 4GB is the maximum.
+
+jmp short then nop instruction at the first
+OEMIdentifier 8bytes (Name)
+
+### VFS Layer
+- The virtual filesystem layer allows a kernel to support an infinite amount of filesystem
+- They virtual filesystem layer allows us to abstract out low level filesystem code
+- Allows filesystem functionality to be loaded or unloaded to the kernel at any time
