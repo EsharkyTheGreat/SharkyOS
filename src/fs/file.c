@@ -56,3 +56,25 @@ static int file_new_descriptor(struct file_descriptor **desc_out) {
   }
   return res;
 }
+
+static struct file_descriptor *file_get_descriptor(int fd) {
+  if (fd < 1 || fd >= SHARKYOS_MAX_FILE_DESCRIPTORS) {return 0;}
+  int idx = fd-1;
+  return file_descriptors[idx];
+}
+
+
+struct filesystem *fs_resolve(struct disk *disk) {
+  struct filesystem *fs = 0;
+  for (int i =0;i < SHARKYOS_MAX_FILESYSTEM;i++) {
+    if (filesystems[i] != 0 && filesystems[i]->resolve(disk) == 0) {
+      fs = filesystems[i];
+      break;
+    }
+  }
+  return fs;
+}
+
+int fopen(const char *filename, const char *mode) {
+  return -EIO;
+}
